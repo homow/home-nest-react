@@ -1,0 +1,62 @@
+# Force LF line endings for all text files (cross-platform consistency)
+* text=auto eol=lf
+
+# Treat font files as binary (no diff, no merge)
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+
+# Treat images as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+
+# Treat media as binary
+*.mp4 binary
+*.webm binary
+*.mp3 binary
+*.wav binary
+
+# Treat compiled assets as binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.7z binary
+
+# Treat minified files as binary (no diff)
+*.min.js binary
+*.min.css binary
+
+# Treat lock files as text (but force LF)
+package-lock.json text eol=lf
+pnpm-lock.yaml text eol=lf
+yarn.lock text eol=lf
+
+# Treat config files as text
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.env text eol=lf
+
+# Treat source code as text
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+
+# Ignore merge conflict markers in binary files
+*.ttf -diff
+*.woff -diff
+*.woff2 -diff
+*.png -diff
+*.jpg -diff
