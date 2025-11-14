@@ -5,8 +5,8 @@
     <title></title>
 
     <script type="text/javascript">
-        const redirectTo = window.location.pathname + window.location.search + window.location.hash;
-        window.location.replace(redirectTo);
+        sessionStorage.setItem('redirect', location.pathname);
+        window.location.href = '/';
     </script>
 </head>
 </html>
