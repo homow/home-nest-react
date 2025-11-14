@@ -22,11 +22,12 @@
 
     <!-- scripts -->
     <script type="text/javascript">
-        const redirectPath = sessionStorage.getItem('redirect');
+        const params = new URLSearchParams(window.location.search);
+        const redirectPath = params.get('redirect');
         if (redirectPath) {
-            sessionStorage.removeItem('redirect');
             window.history.replaceState(null, '', redirectPath);
         }
+
         document.documentElement.classList.toggle(
             "dark",
             localStorage.getItem("theme") === "dark"

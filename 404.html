@@ -5,8 +5,14 @@
     <title></title>
 
     <script type="text/javascript">
-        sessionStorage.setItem('redirect', location.pathname);
-        window.location.href = '/';
+        const redirectTo = window.location.pathname + window.location.search + window.location.hash;
+
+        if (!sessionStorage.getItem('redirected')) {
+            sessionStorage.setItem('redirected', 'true');
+            window.location.href = '/' + '?redirect=' + encodeURIComponent(redirectTo);
+        } else {
+            sessionStorage.removeItem('redirected');
+        }
     </script>
 </head>
 </html>
