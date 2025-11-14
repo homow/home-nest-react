@@ -5,14 +5,8 @@
     <title></title>
 
     <script type="text/javascript">
-        const redirectTo = window.location.pathname + window.location.search + window.location.hash;
-
-        if (!sessionStorage.getItem('redirected')) {
-            sessionStorage.setItem('redirected', 'true');
-            window.location.href = '/' + '?redirect=' + encodeURIComponent(redirectTo);
-        } else {
-            sessionStorage.removeItem('redirected');
-        }
+        const redirectTo = location.pathname + location.search + location.hash;
+        window.location.replace('/home-nest/?redirect=' + encodeURIComponent(redirectTo));
     </script>
 </head>
 </html>
