@@ -47,12 +47,25 @@
 }
 
 @utility nav-mobile {
-    @apply fixed z-30 w-50 flex-col bg-grey-10 bottom-0 top-0 pt-8 transition-all duration-200;
+    @apply fixed z-30 w-50 flex-col
+    bg-grey-10 bottom-0 top-0 pt-8
+    transition-all duration-200;
 }
 
 @layer base {
     html {
-        @apply scroll-smooth;
+        @apply transition-all scroll-smooth selection:bg-violet-600 selection:text-white;
+    }
+    *::-webkit-scrollbar {
+        @apply size-3;
+    }
+
+    *::-webkit-scrollbar-track {
+        @apply bg-stone-800;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        @apply bg-violet-500 border-x-1 border-stone-800 rounded-none;
     }
     body {
         @apply font-dana leading-[150%] font-normal text-base tracking-wide bg-primary-bg text-primary-txt;
@@ -73,7 +86,7 @@
         @apply text-xl md:text-2xl lg:text-3xl;
     }
     a {
-        @apply font-medium hover:opacity-70 active:opacity-70 transition-all;
+        @apply font-medium hover:text-violet-600 active:text-violet-600 transition-all;
     }
 }
 

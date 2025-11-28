@@ -1,0 +1,42 @@
+import type {NavigateFunction} from "react-router";
+import {useNavigate} from "react-router";
+import Button from "@ui/Button";
+
+export default function NotFound() {
+    const navigate: NavigateFunction = useNavigate();
+    const hasBackPath: number = window.history.length;
+
+    return (
+        <section
+            className="min-h-svh flex flex-col items-center justify-center gap-6 px-4 text-center"
+        >
+            <h1
+                className="text-6xl font-extrabold text-rose-500">
+                404
+            </h1
+            >
+            <p
+                className="text-lg text-gray-700 dark:text-gray-300"
+            >
+                صفحه‌ای که دنبالشی وجود نداره.
+            </p>
+
+            <div
+                className="flex gap-4 mt-4 flex-wrap justify-center"
+            >
+                {hasBackPath > 1 && (
+                    <Button
+                        text="بازگشت به صفحه قبل"
+                        onClick={(): void | Promise<void> => navigate(-1)}
+                        className="px-6 py-2 bg-violet-500 hover:bg-violet-600 text-white rounded-lg transition-colors"
+                    />
+                )}
+                <Button
+                    text="بازگشت به خانه"
+                    onClick={(): void | Promise<void> => navigate("/")}
+                    className="px-6 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-lg transition-colors"
+                />
+            </div>
+        </section>
+    );
+};

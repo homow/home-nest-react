@@ -1,0 +1,89 @@
+import {type ConfigEnv, defineConfig, loadEnv} from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from "@tailwindcss/vite";
+import path, {resolve} from 'path';
+import {fileURLToPath} from "url";
+import {visualizer} from "rollup-plugin-visualizer";
+import checker from "vite-plugin-checker";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default defineConfig(({mode}: ConfigEnv) => {
+    const env: Record<string, string> = loadEnv(mode, process.cwd(), '');
+    const apiUrl: string = env.API_URL || env.VITE_API_URL;
+
+    return {
+        base: env.VITE_BASE_PATH || "/",
+        server: {
+            host: true,
+            proxy: apiUrl
+                ? {
+                    "/api": {
+                        target: apiUrl,
+                        changeOrigin: true,
+                        secure: false,
+                    }
+                }
+                : undefined
+        },
+        build: {
+            rollupOptions: {
+                input: {
+                    main: resolve(__dirname, 'index.html'),
+                    notFound: resolve(__dirname, '404.html'),
+                },
+                output: {
+                    manualChunks(id: string): string | void {
+                        if (!id.includes('node_modules')) return;
+
+                        if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) return 'react-core';
+
+                        if (id.includes('axios')) return 'axios';
+
+                        if (id.includes('clsx') || id.includes('tailwind-merge')) return 'utils';
+
+                        return 'vendor';
+                    }
+                }
+            },
+            chunkSizeWarningLimit: 500,
+            sourcemap: mode === 'development',
+        },
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, 'src'),
+                '@components': path.resolve(__dirname, 'src/components'),
+                '@ui': path.resolve(__dirname, "src/components/ui"),
+                '@pages': path.resolve(__dirname, 'src/pages'),
+                '@img': path.resolve(__dirname, 'src/assets/images'),
+                '@hooks': path.resolve(__dirname, 'src/hooks'),
+                '@api': path.resolve(__dirname, 'src/lib/api'),
+                '@context': path.resolve(__dirname, 'src/context'),
+                '@utils': path.resolve(__dirname, 'src/lib/utils'),
+            }
+        },
+        plugins: [
+            react(
+                {
+                    babel: {
+                        plugins: ["babel-plugin-react-compiler"]
+                    }
+                }
+            ),
+            tailwindcss(),
+            checker({
+                typescript: {
+                    tsconfigPath: "./tsconfig.app.json"
+                }
+            }),
+            env.ANALYZE === "true" &&
+            visualizer({
+                filename: "analyze.html",
+                open: true,
+                gzipSize: true,
+                brotliSize: true
+            }),
+        ].filter(Boolean),
+    }
+});
