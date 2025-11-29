@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="rtl">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,15 +28,15 @@
             window.history.replaceState(null, '', redirectPath);
         }
 
-        document.documentElement.classList.toggle(
-            "dark",
-            localStorage.getItem("theme") === "dark"
+        document.documentElement.classList.toggle("dark",
+            localStorage.theme === "dark" || (!localStorage.theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
         );
     </script>
-  <script type="module" crossorigin src="/home-nest/assets/main-CHqeaJPM.js"></script>
-  <link rel="modulepreload" crossorigin href="/home-nest/assets/vendor-Bb8JjhAW.js">
-  <link rel="modulepreload" crossorigin href="/home-nest/assets/react-core-DWdO-Dri.js">
-  <link rel="stylesheet" crossorigin href="/home-nest/assets/main-BL-X4mMi.css">
+  <script type="module" crossorigin src="/home-nest/assets/main-CFzjW0Qn.js"></script>
+  <link rel="modulepreload" crossorigin href="/home-nest/assets/vendor-7OC5HNn7.js">
+  <link rel="modulepreload" crossorigin href="/home-nest/assets/react-core-BT8d6kA6.js">
+  <link rel="modulepreload" crossorigin href="/home-nest/assets/utils-BNe0Xlio.js">
+  <link rel="stylesheet" crossorigin href="/home-nest/assets/main-Vm14U3ZB.css">
 </head>
 
 <body>
