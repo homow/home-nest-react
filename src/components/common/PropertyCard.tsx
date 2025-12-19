@@ -1,4 +1,3 @@
-import type {JSX} from "react";
 import {Link} from "react-router";
 import Icon from "@ui/icons/Icon";
 import {cn} from "@utils/ui-utils";
@@ -22,7 +21,7 @@ export default function PropertyCard(
         price,
         propertyLink,
         className
-    }: Props): JSX.Element {
+    }: Props) {
 
     return (
         <div
@@ -32,11 +31,11 @@ export default function PropertyCard(
         >
             {/* image card */}
             <Link
-                className={"block hover:opacity-100"}
+                className={"block aspect-video hover:opacity-100"}
                 to={propertyLink}
             >
                 <img
-                    className={"w-full"}
+                    className={"w-full object-cover"}
                     loading={"lazy"}
                     src={img}
                     alt={`${title} picture`}

@@ -1,4 +1,4 @@
-import type {ReactNode, JSX} from "react";
+import type {ReactNode} from "react";
 import {Suspense} from 'react'
 import Loading from "../Loading";
 
@@ -7,7 +7,7 @@ type Props = {
     fallback?: ReactNode
 }
 
-export default function SuspenseBoundary({children, fallback}: Props): JSX.Element {
+export default function SuspenseBoundary({children, fallback}: Props) {
     return (
         <Suspense
             fallback={

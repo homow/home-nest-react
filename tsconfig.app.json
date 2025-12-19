@@ -11,14 +11,23 @@
       "@components/*": [
         "src/components/*"
       ],
+      "@ui/*": [
+        "src/components/ui/*"
+      ],
       "@pages/*": [
         "src/pages/*"
       ],
-      "@layouts/*": [
-        "src/layouts/*"
+      "@img/*": [
+        "src/assets/images/*"
       ],
-      "@ui/*": [
-        "src/components/ui/*"
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@api/*": [
+        "src/lib/api/*"
+      ],
+      "@context/*": [
+        "src/context/*"
       ],
       "@utils/*": [
         "src/lib/utils/*"

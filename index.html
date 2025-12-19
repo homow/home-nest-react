@@ -29,9 +29,8 @@
             window.history.replaceState(null, '', redirectPath);
         }
 
-        document.documentElement.classList.toggle(
-            "dark",
-            localStorage.getItem("theme") === "dark"
+        document.documentElement.classList.toggle("dark",
+            localStorage.theme === "dark" || (!localStorage.theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
         );
     </script>
 </head>

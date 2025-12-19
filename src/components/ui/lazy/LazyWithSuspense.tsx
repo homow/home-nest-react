@@ -1,4 +1,4 @@
-import type {JSX, ComponentType, LazyExoticComponent} from "react";
+import type {ComponentType, LazyExoticComponent} from "react";
 import {lazy} from "react";
 import SuspenseBoundary from "./SuspenseBoundary";
 
@@ -7,7 +7,7 @@ function LazyWithSuspense(
 ): ComponentType {
     const Component: LazyExoticComponent<ComponentType> = lazy(importFunc);
 
-    return function Wrapped(): JSX.Element {
+    return function Wrapped() {
         return (
             <SuspenseBoundary>
                 <Component/>

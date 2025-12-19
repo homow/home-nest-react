@@ -1,15 +1,10 @@
-import type {ComponentType} from "react";
 import {createBrowserRouter} from "react-router";
-import LazyWithSuspense from "@ui/suspense/LazyWithSuspense"
+import LazyWithSuspense from "@ui/lazy/LazyWithSuspense"
 import {BASE_PATH} from "@/config";
 import App from "@/App";
 
-const Home: ComponentType = LazyWithSuspense(
-    (): Promise<typeof import("@/pages/Home")> => import("@/pages/Home")
-);
-const NotFound: ComponentType = LazyWithSuspense(
-    (): Promise<typeof import("@/pages/NotFound")> => import("@/pages/NotFound")
-);
+const Home = LazyWithSuspense(() => import("@/pages/Home"));
+const NotFound = LazyWithSuspense(() => import("@/pages/NotFound"));
 
 const routes = createBrowserRouter(
     [

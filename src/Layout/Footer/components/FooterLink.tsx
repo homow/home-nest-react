@@ -1,4 +1,3 @@
-import type {JSX} from "react";
 import type {LinkData} from "@/types/footer.types";
 import LinkBox from "../common/LinkBox";
 import LinkInput from "../common/LinkInput";
@@ -36,7 +35,7 @@ const footerLinkData: LinkData[] = [
     }
 ];
 
-export default function FooterLinks(): JSX.Element {
+export default function FooterLinks() {
     return (
         <div className={"container space-y-12 xl:flex flex-row-reverse items-start justify-between"}>
             <LinkInput/>
